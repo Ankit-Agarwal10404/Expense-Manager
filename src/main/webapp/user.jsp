@@ -69,7 +69,7 @@ footer{
 <div class="container">
 
     <div class="card">
-        <a href="addEmployee.jsp">Add User</a>
+        <a href="addUser.jsp">Add User</a>
     </div>
 
     <div class="card">
@@ -77,11 +77,11 @@ footer{
     </div>
 
     <div class="card">
-        <a href="updateEmployee.jsp">Update User</a>
+        <a href="updateUser.jsp">Update User</a>
     </div>
 
     <div class="card">
-        <a href="deleteEmployee.jsp">Delete User</a>
+        <a href="deleteUSer.jsp">Delete User</a>
     </div>
 
 </div>
