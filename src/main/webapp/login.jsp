@@ -102,7 +102,7 @@ padding:25px;
 
 <h2>User Login</h2>
 
-<form action="loginEmployee" method="post">
+<form action="login" method="post">
 
 <label>Employee Email</label>
 <input type="email" name="email" placeholder="Enter your email" required>

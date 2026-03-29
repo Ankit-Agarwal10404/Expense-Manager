@@ -101,6 +101,39 @@ public class UsersDao {
 		}
 	}
 	
+	public User getUserByEmail(String email) {
+		String query = "select * from users where email =?";
+		try {
+			PreparedStatement ps=connection.prepareStatement(query);
+			ps.setString(1, email);
+			
+			ResultSet rs=ps.executeQuery();
+			User user = new User();
+			
+			if(rs.next()) {
+				int userId = rs.getInt("id");
+				String name = rs.getString("name");
+				String mail = rs.getString("email");
+				String password= rs.getString("password");
+				
+				User user2 = new User();
+				
+				user.setId(userId);
+				user.setName(name);
+				user.setEmail(mail);
+				user.setPassword(password);
+				
+				return user;
+				}
+			
+				return null;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public void updateUserById(User user ) {
 		String query = "update users set name = ? , email = ? , password = ? where id = ?";
 		try {
