@@ -79,6 +79,10 @@ footer{
     <div class="card">
         <a href="updateUser.jsp">Update User</a>
     </div>
+    
+    <div class="card">
+        <a href="displayUser.jsp">Display All Users</a>
+    </div>
 
     <div class="card">
         <a href="deleteUSer.jsp">Delete User</a>

@@ -36,7 +36,7 @@ public class AddUserServlet extends HttpServlet {
 		if(user2 != null) {
 			
 			RequestDispatcher rd=req.getRequestDispatcher("/login.jsp");
-			rd.forward(req, resp);
+			rd.include(req, resp);
 			//printWriter.write("you are registered");
 			System.out.println("you are registered");
 		}else {
