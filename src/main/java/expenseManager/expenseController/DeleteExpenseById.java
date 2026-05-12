@@ -13,7 +13,8 @@ public static void main(String[] args) {
 	
 	ExpensesDao expensesDao = new ExpensesDao();
 	
-	expensesDao.deleteExpenseById(id);
+	boolean deleted = expensesDao.deleteExpenseById(id);
+	System.out.println(deleted ? "Expense deleted" : "Unable to delete expense");
 	
 	sc.close();
 }

@@ -22,9 +22,12 @@ public class loginUserServlet extends HttpServlet {
 		
 		if(usersDao.getUserByEmail(email)!= null) {
 			if(usersDao.getUserByEmail(email).getPassword().equals(password)) {
+				req.getSession().setAttribute("user", usersDao.getUserByEmail(email));
 				RequestDispatcher rs=req.getRequestDispatcher("/expense.jsp");
 				rs.forward(req, resp);
 				System.out.println("successfully login");
+				
+				resp.sendRedirect("expense.jsp");
 			}else {
 				RequestDispatcher rs=req.getRequestDispatcher("/login.jsp");
 				rs.forward(req, resp);

@@ -1,13 +1,13 @@
 package expenseManager.dto;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class Expenses {
 
 	 private int id;
 	 private double amount;
 	 private String category;
-	 private Date date;
+	 private LocalDate date;
 	 private String description;
 	 private int userId;
 	 public int getId() {
@@ -28,10 +28,10 @@ public class Expenses {
 	 public void setCategory(String category) {
 		 this.category = category;
 	 }
-	 public Date getDate() {
+	 public LocalDate getDate() {
 		 return date;
 	 }
-	 public void setDate(Date date) {
+	 public void setDate(LocalDate date) {
 		 this.date = date;
 	 }
 	 public String getDescription() {

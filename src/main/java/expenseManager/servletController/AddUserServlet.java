@@ -16,9 +16,19 @@ import jakarta.servlet.http.HttpServletResponse;
 public class AddUserServlet extends HttpServlet {
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		String name =req.getParameter("name");
-		int id =Integer.parseInt(req.getParameter("id"));
+		//this may cause nullPointerException because id may be empty
+		//int id =Integer.parseInt(req.getParameter("id"));
+		String idStr = req.getParameter("id");
+		int id = 0;
+		if(idStr != null && !idStr.isEmpty()){
+		    id = Integer.parseInt(idStr);
+		} else {
+		    resp.getWriter().write("ID is required");
+		    return;
+		}
 		String email = req.getParameter("email");
 		String password = req.getParameter("psw");
 		
@@ -35,8 +45,7 @@ public class AddUserServlet extends HttpServlet {
 		
 		if(user2 != null) {
 			
-			RequestDispatcher rd=req.getRequestDispatcher("/login.jsp");
-			rd.include(req, resp);
+			resp.sendRedirect("user.jsp");
 			//printWriter.write("you are registered");
 			System.out.println("you are registered");
 		}else {

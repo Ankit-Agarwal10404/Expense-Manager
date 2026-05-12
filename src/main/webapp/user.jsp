@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Employee Management System</title>
+<title>Expenses Management System</title>
 
 <style>
 body{
@@ -85,13 +85,13 @@ footer{
     </div>
 
     <div class="card">
-        <a href="deleteUSer.jsp">Delete User</a>
+        <a href="deleteUser.jsp">Delete User</a>
     </div>
 
 </div>
 
 <footer>
-    <p>© 2026 Employee Management System</p>
+    <p>© 2026 Expenses Management System</p>
 </footer>
 
 </body>

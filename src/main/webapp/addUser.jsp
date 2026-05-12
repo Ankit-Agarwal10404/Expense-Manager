@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Employee Registration</title>
 
 <style>
@@ -100,19 +100,20 @@ button:hover{
 
 <h2>User Registration</h2>
 
-<form action="userRegister">
+<form action="userRegister" method="post">
 
 <label>USER ID</label>
-<input type="number" placeholder="Enter User Id" name="id">
+<input type="number" placeholder="Enter User Id" name="id" required="required">
 
 <label>USER NAME</label>	
-<input type="text" placeholder="Enter User name" name="name">
+<input type="text" placeholder="Enter User name" name="name" required="required">
 
 <label>USER EMAIL</label>
-<input type="email" placeholder="Enter User email" name="email">
+<input type="email" placeholder="Enter User email" name="email" required="required">
 
 <label>USER PASSWORD</label>
-<input type="password" placeholder="Enter User password" name="psw">
+<input type="password" placeholder="Enter User password" name="psw" required="required">
+
 
 
 <button type="submit">Register</button>

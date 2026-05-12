@@ -100,17 +100,14 @@ padding:25px;
 
 <div class="login">
 
-<h2>User Login</h2>
+<h2>User delete</h2>
 
-<form action="login" method="post">
+<form action="userDelete" method="get">
 
-<label>Employee Email</label>
-<input type="email" name="email" placeholder="Enter your email" required>
+<label>Employee id</label>
+<input type="number" name="id" placeholder="Enter your user id" required>
 
-<label>Password</label>
-<input type="password" name="password" placeholder="Enter your password" required>
-
-<button type="submit">Login</button>
+<button type="submit">submit</button>
 
 </form>
 

@@ -6,14 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import expenseManager.connection.DbConnection;
 import expenseManager.dto.Expenses;
 
 public class ExpensesDao {
 	Connection connection=DbConnection.connection();
-	public void addExpenses(Expenses expenses) {
+	public Expenses addExpenses(Expenses expenses) {
 		String query = "insert into expenses(id, user_id , amount , category , date, description) values (? ,? ,? ,? ,? ,?)";
 		try {
 			PreparedStatement ps=connection.prepareStatement(query);
@@ -21,20 +20,19 @@ public class ExpensesDao {
 			ps.setInt(2, expenses.getUserId());
 			ps.setDouble(3, expenses.getAmount());
 			ps.setString(4, expenses.getCategory());
-			ps.setDate(5, expenses.getDate());
-			ps.setString(6, expenses.getCategory());
+			ps.setDate(5, java.sql.Date.valueOf(expenses.getDate()));
+			ps.setString(6, expenses.getDescription());
 			
 			int result =ps.executeUpdate();
-			String msg = result > 0 ? "expense inserted": "Something went wrong";
-			System.out.println(msg);
+			return result!=0 ? expenses : null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
 	}
 	
 	public ArrayList<Expenses> getAllExpenses() {
-		Expenses expenses = new Expenses();
 		String query = "select * from expenses";
 		try {
 			PreparedStatement ps =connection.prepareStatement(query);
@@ -43,6 +41,7 @@ public class ExpensesDao {
 			ArrayList<Expenses> expensesList =  new ArrayList<Expenses>();
 			
 			while(rs.next()) {
+				Expenses expenses = new Expenses();
 				int id = rs.getInt("id");
 				double amount = rs.getDouble("amount");
 				String category = rs.getString("category");
@@ -53,9 +52,9 @@ public class ExpensesDao {
 				expenses.setId(id);
 				expenses.setAmount(amount);
 				expenses.setCategory(category);
-				expenses.setUserId(userId);
-				expenses.setDate(date);
+				expenses.setDate(date.toLocalDate());
 				expenses.setDescription(description);
+				expenses.setUserId(userId);
 				
 				expensesList.add(expenses);
 			}
@@ -88,9 +87,9 @@ public class ExpensesDao {
 				expenses.setId(id1);
 				expenses.setAmount(amount);
 				expenses.setCategory(category);
-				expenses.setUserId(userId);
-				expenses.setDate(date);
+				expenses.setDate(date.toLocalDate());
 				expenses.setDescription(description);
+				expenses.setUserId(userId);
 				
 				return expenses;
 			}
@@ -107,14 +106,20 @@ public class ExpensesDao {
 	
 	
 	
-	public void updateExpenseByID() {
-		String query = "UPDATE expenses SET amount=?, category=? WHERE id=?;";
-		
+	public Expenses updateExpenseByID(Expenses expenses) {
+		String query = "UPDATE expenses SET amount=?, category=?, date=?, description=? WHERE id=?";
 		try {
-			PreparedStatement ps =connection.prepareStatement(query);
+			PreparedStatement ps = connection.prepareStatement(query);
+			ps.setDouble(1, expenses.getAmount());
+			ps.setString(2, expenses.getCategory());
+			ps.setDate(3, java.sql.Date.valueOf(expenses.getDate()));
+			ps.setString(4, expenses.getDescription());
+			ps.setInt(5, expenses.getId());
+			int result = ps.executeUpdate();
+			return result > 0 ? expenses : null;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
 	}
 	
@@ -125,19 +130,16 @@ public class ExpensesDao {
 	
 	
 	
-	public void deleteExpenseById(int id) {
-		String query ="DELETE FROM expenses WHERE id=?;";
-		
+	public boolean deleteExpenseById(int id) {
+		String query ="DELETE FROM expenses WHERE id=?";
 		try {
 			PreparedStatement ps=connection.prepareStatement(query);
 			ps.setInt(1, id);
 			int result=ps.executeUpdate();
-			
-			String msg = result>0 ?"id deleted" : "something went wrong";
-			System.out.println(msg);
+			return result > 0;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	}
 }

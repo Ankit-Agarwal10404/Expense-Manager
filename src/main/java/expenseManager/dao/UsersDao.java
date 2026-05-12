@@ -18,8 +18,8 @@ public class UsersDao {
 		
 		String query ="insert into users(id,name,email,password) values (?,?,?,?)";
 		try {
-			PreparedStatement ps =connection.prepareStatement(query);
 			
+			PreparedStatement ps =connection.prepareStatement(query);
 			ps.setInt(1, user.getId());
 			ps.setString(2, user.getName());
 			ps.setString(3, user.getEmail());
@@ -30,9 +30,7 @@ public class UsersDao {
 			return result!=0 ? user : null;
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
 			return null;
 		}
 	}
@@ -63,7 +61,7 @@ public class UsersDao {
 			
 			return users;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 			return null;
 		}
@@ -116,7 +114,6 @@ public class UsersDao {
 				String mail = rs.getString("email");
 				String password= rs.getString("password");
 				
-				User user2 = new User();
 				
 				user.setId(userId);
 				user.setName(name);

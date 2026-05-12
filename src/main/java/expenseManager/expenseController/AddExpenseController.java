@@ -1,7 +1,5 @@
 package expenseManager.expenseController;
 
-import java.sql.Date;
-
 import expenseManager.dao.ExpensesDao;
 import expenseManager.dto.Expenses;
 
@@ -14,7 +12,7 @@ public class AddExpenseController {
 		expenses.setAmount(4000);
 		expenses.setCategory("sports");
 		expenses.setDescription("sports expense are 4000");
-		expenses.setDate(Date.valueOf("2000-04-19"));
+		java.sql.Date.valueOf(expenses.getDate());
 		
 		
 		expensesDao.addExpenses(expenses);
